@@ -1,0 +1,64 @@
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h1 class="h3 mb-2">Sign In</h1>
+          <p class="text-muted mb-4">Access your Punjab Mandi Board account.</p>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                [class.is-invalid]="email?.invalid && (email?.touched || submitted)"
+                formControlName="email"
+                placeholder="username@example.com"
+              />
+              
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                [class.is-invalid]="password?.invalid && (password?.touched || submitted)"
+                formControlName="password"
+                placeholder="Enter your password"
+              />
+              
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Captcha</label>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div class="form-control p-2 text-center fw-semibold bg-light" style="max-width: 10rem;">
+                  {{ captchaValue }}
+                </div>
+                <button type="button" class="btn" (click)="refreshCaptcha()">
+                  <span class="me-1">&#x21bb;</span>
+                </button>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                [class.is-invalid]="captcha?.invalid && (captcha?.touched || submitted)"
+                formControlName="captcha"
+                placeholder="Enter the characters shown above"
+              />
+              
+            </div>
+            <button type="submit" class="btn btn-success w-100">Sign In</button>
+          </form>
+
+          <p class="mt-4 text-center text-muted">
+            New to the board? <a routerLink="/register" class="fw-semibold text-success">Create an account</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

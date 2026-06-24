@@ -83,6 +83,7 @@ export class Registeration implements OnInit {
       bidderType: ['Individual'],
       emailId: [''],
       h1BidderName: [''],
+      transfered: [false],
       relation: ['Son of (S/o)'],
       guardianName: [''],
       panNo: [''],
@@ -152,6 +153,7 @@ export class Registeration implements OnInit {
       IsNDCIssued: false,
       IsAssetVerified: false,
       Isauctioned: false,
+      transfered: false,
       bidderType: 'Individual',
       relation: 'Son of (S/o)',
       auctionPropertyType: 'Commercial Plots',
@@ -180,7 +182,5 @@ export class Registeration implements OnInit {
     });
   }
 
-//   isTransferedchecked(): boolean {
-
-//   }
+  
 }

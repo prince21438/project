@@ -13,7 +13,6 @@ export class Registeration implements OnInit {
   mandis = ['Grain Market A', 'Regional Mandi B', 'Fruit & Vegetable Mandi', 'Cotton Mandi'];
   plotTypes = ['Commercial', 'Residential', 'Industrial'];
   propertyCategories = ['Premium Category', 'General Category'];
-  agentTypes = ['Direct Allotment', 'Registered Broker'];
   bidderTypes = ['Individual', 'Joint Venture / Firm', 'Corporate Entity'];
   relations = ['Son of (S/o)', 'Daughter of (D/o)', 'Wife of (W/o)'];
   auctionPropertyTypes = ['Commercial Plots', 'Industrial Complex'];
@@ -71,7 +70,6 @@ export class Registeration implements OnInit {
       plotno: ['', Validators.required],
       plan: ['', Validators.required],
       propertycategory: ['', Validators.required],
-      agentype: ['', Validators.required],
       isAssetResumed: [false],
       IsAssetSurrendered: [false],
       IsLocked: [false],
@@ -181,4 +179,8 @@ export class Registeration implements OnInit {
       control.updateValueAndValidity({ emitEvent: false });
     });
   }
+
+//   isTransferedchecked(): boolean {
+
+//   }
 }

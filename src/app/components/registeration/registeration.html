@@ -27,17 +27,17 @@
                       id="propertySearch"
                       type="search"
                       class="form-control bg-light"
-                      placeholder="Search by property code, branch, or mandi"
+                      placeholder="Search by property Code"
                     />
                   </div>
                 </div>
 
-
+<!-- 
                  <div class="col-sm-6">
                   <label for="propertycode" class="form-label small text-secondary fw-bold text-uppercase">Property Code <span class="text-danger">*</span></label>
                   <input id="propertycode" type="text" class="form-control bg-light rounded-3 font-monospace" placeholder="PROP-XXXXX" formControlName="propertycode" [class.is-invalid]="isInvalid('propertycode')" />
                   @if (isInvalid('propertycode')) { <div class="invalid-feedback">Property code is required.</div> }
-                </div>  
+                </div>   -->
 
 
                 <div class="col-sm-6">
@@ -102,16 +102,6 @@
                   @if (isInvalid('propertycategory')) { <div class="invalid-feedback">Property category is required.</div> }
                 </div>
 
-                <div class="col-12">
-                  <label for="agentype" class="form-label small text-secondary fw-bold text-uppercase">Agent Type <span class="text-danger">*</span></label>
-                  <select id="agentype" class="form-select bg-light rounded-3" formControlName="agentype" [class.is-invalid]="isInvalid('agentype')">
-                    <option value="" disabled>Select agent type</option>
-                    @for (agentType of agentTypes; track agentType) {
-                      <option [value]="agentType">{{ agentType }}</option>
-                    }
-                  </select>
-                  @if (isInvalid('agentype')) { <div class="invalid-feedback">Agent type is required.</div> }
-                </div>
               </div>
             </div>
           </div>
@@ -188,6 +178,18 @@
                   </div>
                   @if (isInvalid('h1BidderName')) { <div class="invalid-feedback d-block">H1 bidder name is required.</div> }
                 </div>
+
+                <div class="col-md-4">
+                  <label class="form-label small text-secondary fw-bold text-uppercase" for="isTransfered">Is Transfered<span class="text-danger"> *</span></label>
+                  <div class="bg-light rounded-3 p-2">
+                  <div class="form-check form-switch d-flex align-items-center justify-content-between m-0 p-0">
+                   <label class="form-check-label fw-semibold text-secondary" for="isTransfered">Is Transfered</label>
+                  <input class="form-check-input m-0" type="checkbox" role="switch" id="isTransfered" formControlName="transfered" [class.is-invalid]="isInvalid('transfered')" />
+                </div>
+                    @if (isInvalid('transfered')) { <div class="invalid-feedback d-block">Transfer status is required.</div> }
+                  </div>
+                </div>
+
                 <div class="col-md-4">
                   <label for="relation" class="form-label small text-secondary fw-bold text-uppercase">Relation</label>
                   <select id="relation" class="form-select bg-light rounded-3" formControlName="relation" [class.is-invalid]="isInvalid('relation')">
@@ -250,10 +252,10 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="bg-primary bg-opacity-10 border border-primary-subtle rounded-4 p-3 h-100">
-                    <label for="h1BidderFinalPrice" class="form-label small text-primary fw-bold text-uppercase">H1 Bidder Final Price <span class="text-danger">*</span></label>
+                  <div class="bg-light border rounded-4 p-3 h-100">
+                    <label for="h1BidderFinalPrice" class="form-label small text-secondary fw-bold text-uppercase">H1 Bidder Final Price <span class="text-danger">*</span></label>
                     <div class="input-group">
-                      <span class="input-group-text bg-white text-primary">Rs.</span>
+                      <span class="input-group-text bg-white ">Rs.</span>
                       <input id="h1BidderFinalPrice" type="number" step="0.01" class="form-control bg-white fw-semibold" placeholder="0.00" formControlName="h1BidderFinalPrice" [class.is-invalid]="isInvalid('h1BidderFinalPrice')" />
                     </div>
                     @if (isInvalid('h1BidderFinalPrice')) { <div class="invalid-feedback d-block">H1 bidder final price is required.</div> }
@@ -262,7 +264,7 @@
               </div>
 
               <div class="row g-2 mb-3">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="bg-light border rounded-4 p-3 h-100">
                     <h3 class="small fw-bold text-secondary text-uppercase border-bottom pb-2 mb-3">Form Fees Structure <span class="text-danger">*</span></h3>
                     <div class="row g-2">
@@ -272,7 +274,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="bg-light border rounded-4 p-3 h-100">
                     <h3 class="small fw-bold text-secondary text-uppercase border-bottom pb-2 mb-3">EMD (Earnest Money Deposit) <span class="text-danger">*</span></h3>
                     <div class="row g-2">
@@ -293,15 +295,15 @@
                 </div>
               </div>
 
-              <div class="bg-primary bg-opacity-10 border border-primary-subtle rounded-4 p-3">
-                <h3 class="small fw-bold text-primary text-uppercase border-bottom border-primary-subtle pb-2 mb-3">Outstanding Dues &amp; Installment Scheduler <span class="text-danger">*</span></h3>
+              <div class="bg-light border rounded-4 p-3">
+                <h3 class="small fw-bold text-secondary text-uppercase border-bottom  pb-2 mb-3">Outstanding Dues &amp; Installment Scheduler <span class="text-danger">*</span></h3>
                 <div class="row g-2">
                   <div class="col-sm-6 col-lg-2"><label class="form-label small text-secondary">Installment No.</label><select class="form-select bg-white" formControlName="installmentNo" [class.is-invalid]="isInvalid('installmentNo')">@for (installment of installments; track installment) { <option [value]="installment">{{ installment }}</option> }</select>@if (isInvalid('installmentNo')) { <div class="invalid-feedback">Installment no. is required.</div> }</div>
                   <div class="col-sm-6 col-lg-2"><label class="form-label small text-secondary">Due Date</label><input type="date" class="form-control bg-white" formControlName="dueDate" [class.is-invalid]="isInvalid('dueDate')" />@if (isInvalid('dueDate')) { <div class="invalid-feedback">Due date is required.</div> }</div>
                   <div class="col-sm-6 col-lg-2"><label class="form-label small text-secondary">Paid Status</label><select class="form-select bg-white" formControlName="paidStatus" [class.is-invalid]="isInvalid('paidStatus')">@for (status of paidStatuses; track status) { <option [value]="status">{{ status }}</option> }</select>@if (isInvalid('paidStatus')) { <div class="invalid-feedback">Paid status is required.</div> }</div>
                   <div class="col-sm-6 col-lg-2"><label class="form-label small text-secondary">Due Amount (Rs.)</label><input type="number" step="0.01" class="form-control bg-white" placeholder="0.00" formControlName="dueAmount" [class.is-invalid]="isInvalid('dueAmount')" />@if (isInvalid('dueAmount')) { <div class="invalid-feedback">Due amount is required.</div> }</div>
                   <div class="col-sm-6 col-lg-2"><label class="form-label small text-secondary">Interest (Rs.)</label><input type="number" step="0.01" class="form-control bg-white" placeholder="0.00" formControlName="accumulatedInterest" [class.is-invalid]="isInvalid('accumulatedInterest')" />@if (isInvalid('accumulatedInterest')) { <div class="invalid-feedback">Interest is required.</div> }</div>
-                  <div class="col-sm-6 col-lg-2"><label class="form-label small fw-bold text-primary">Total Due (Rs.)</label><input type="number" class="form-control bg-primary-subtle fw-bold text-primary" placeholder="Auto Calculated" formControlName="totalDueAmount" /></div>
+                  <div class="col-sm-6 col-lg-2"><label class="form-label small fw-bold text-secondary">Total Due (Rs.)</label><input type="number" class="form-control fw-bold text-primary" placeholder="Auto Calculated" formControlName="totalDueAmount" /></div>
                 </div>
               </div>
             </div>

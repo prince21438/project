@@ -18,6 +18,7 @@ export class Registeration implements OnInit {
   auctionPropertyTypes = ['Commercial Plots', 'Industrial Complex'];
   installments = ['1st Installment', '2nd Installment', '3rd Installment'];
   paidStatuses = ['Pending', 'Fully Paid', 'Partially Paid'];
+  plotStatuses = ['Sold', 'Unsold'];
 
   statusFields = [
     { control: 'isAssetResumed', label: 'Asset Resumed' },
@@ -69,6 +70,7 @@ export class Registeration implements OnInit {
       plottype: ['', Validators.required],
       plotno: ['', Validators.required],
       plan: ['', Validators.required],
+      plotstatus: ['', Validators.required],
       propertycategory: ['', Validators.required],
       isAssetResumed: [false],
       IsAssetSurrendered: [false],

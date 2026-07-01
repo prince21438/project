@@ -340,18 +340,18 @@
                   </h3>
                   <div class="row g-2">
                     <div class="col-sm-4"><label class="form-label small text-secondary">Transaction ID</label><input
-                        type="text" class="form-control form-control-sm bg-white font-monospace custom-input-color"
+                        type="text" class="form-control bg-white font-monospace custom-input-color"
                         formControlName="formFeeTransactionId"
                         [class.is-invalid]="isInvalid('formFeeTransactionId')" />@if (isInvalid('formFeeTransactionId'))
                       { <div class="invalid-feedback">Transaction ID is required.</div> }</div>
                     <div class="col-sm-4"><label class="form-label small text-secondary">Txn Date</label><input
-                        type="datetime-local" class="form-control form-control-sm bg-white custom-input-color"
+                        type="date" class="form-control bg-white custom-input-color"
                         formControlName="formFeeTransactionDate"
                         [class.is-invalid]="isInvalid('formFeeTransactionDate')" />@if
                       (isInvalid('formFeeTransactionDate')) { <div class="invalid-feedback">Transaction date is
                         required.</div> }</div>
                     <div class="col-sm-4"><label class="form-label small text-secondary">Paid Amount (Rs.)</label><input
-                        type="number" step="0.01" class="form-control form-control-sm bg-white custom-input-color"
+                        type="number" step="0.01" class="form-control bg-white custom-input-color"
                         formControlName="formFeePaidAmount" [class.is-invalid]="isInvalid('formFeePaidAmount')" />@if
                       (isInvalid('formFeePaidAmount')) { <div class="invalid-feedback">Paid amount is required.</div> }
                     </div>
@@ -364,17 +364,17 @@
                     Deposit) <span class="text-danger">*</span></h3>
                   <div class="row g-2 ">
                     <div class="col-sm-4"><label class="form-label small text-secondary">EMD Txn ID</label><input
-                        type="text" class="form-control form-control-sm bg-white font-monospace custom-input-color"
+                        type="text" class="form-control bg-white font-monospace custom-input-color"
                         formControlName="emdTransactionId" [class.is-invalid]="isInvalid('emdTransactionId')" />@if
                       (isInvalid('emdTransactionId')) { <div class="invalid-feedback">EMD transaction ID is required.
                       </div> }</div>
                     <div class="col-sm-4"><label class="form-label small text-secondary">EMD Date</label><input
-                        type="datetime-local" class="form-control form-control-sm bg-white custom-input-color"
+                        type="date" class="form-control bg-white custom-input-color"
                         formControlName="emdTransactionDate" [class.is-invalid]="isInvalid('emdTransactionDate')" />@if
                       (isInvalid('emdTransactionDate')) { <div class="invalid-feedback">EMD date is required.</div> }
                     </div>
                     <div class="col-sm-4"><label class="form-label small text-secondary">EMD Paid (Rs.)</label><input
-                        type="number" step="0.01" class="form-control form-control-sm bg-white custom-input-color"
+                        type="number" step="0.01" class="form-control bg-white custom-input-color"
                         formControlName="emdPaidAmount" [class.is-invalid]="isInvalid('emdPaidAmount')" />@if
                       (isInvalid('emdPaidAmount')) { <div class="invalid-feedback">EMD paid amount is required.</div> }
                     </div>
@@ -393,7 +393,7 @@
                     [class.is-invalid]="isInvalid('allotmentTransactionId')" />@if (isInvalid('allotmentTransactionId'))
                   { <div class="invalid-feedback">25% milestone transaction ID is required.</div> }</div>
                 <div class="col-sm-4"><label class="form-label small text-secondary">Transaction Date</label><input
-                    type="datetime-local" class="form-control bg-white custom-input-color"
+                    type="date" class="form-control bg-white custom-input-color"
                     formControlName="allotmentTransactionDate"
                     [class.is-invalid]="isInvalid('allotmentTransactionDate')" />@if
                   (isInvalid('allotmentTransactionDate')) { <div class="invalid-feedback">Transaction date is required.

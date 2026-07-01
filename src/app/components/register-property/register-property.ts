@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   selector: 'app-register-property',
   imports: [ReactiveFormsModule],
   templateUrl: './register-property.html',
-  styleUrl: './register-property.css',
 })
 export class RegisterProperty {
   readonly allowedFileTypes = '.jpeg,.jpg,.png,.pdf';

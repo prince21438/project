@@ -10,7 +10,7 @@
         <form class="col-12 col-lg-4" [formGroup]="propertyForm">
           <label for="allotteeCode" class="form-label small text-secondary fw-bold text-uppercase mb-1">Search Allottee Code</label>
           <div class="input-group">
-            <input id="allotteeCode" type="search" class="form-control bg-light rounded-start-3"
+            <input id="allotteeCode" type="search" class="form-control bg-light rounded-start-3 custom-input-color"
               placeholder="Format AAA1-1" formControlName="allotteeCode"
               [class.is-invalid]="isInvalid('allotteeCode')" />
             <button class="btn btn-success fw-semibold rounded-end-3" type="button">Search</button>
@@ -37,7 +37,7 @@
           <div class="row g-3">
             <div class="col-md-6 col-xl-3">
               <label for="district" class="form-label small text-secondary fw-bold text-uppercase">District <span class="text-danger">*</span></label>
-              <select id="district" class="form-select bg-light rounded-3" formControlName="district"
+              <select id="district" class="form-select bg-light rounded-3 custom-input-color" formControlName="district"
                 [class.is-invalid]="isInvalid('district')">
                 <option value="" disabled>Select district</option>
                 @for (district of districts; track district) {
@@ -49,7 +49,7 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="marketCommittee" class="form-label small text-secondary fw-bold text-uppercase">Market Committee <span class="text-danger">*</span></label>
-              <select id="marketCommittee" class="form-select bg-light rounded-3" formControlName="marketCommittee"
+              <select id="marketCommittee" class="form-select bg-light rounded-3 custom-input-color" formControlName="marketCommittee"
                 [class.is-invalid]="isInvalid('marketCommittee')">
                 <option value="" disabled>Select committee</option>
                 @for (committee of marketCommittees; track committee) {
@@ -61,7 +61,7 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="mandi" class="form-label small text-secondary fw-bold text-uppercase">Mandi <span class="text-danger">*</span></label>
-              <select id="mandi" class="form-select bg-light rounded-3" formControlName="mandi"
+              <select id="mandi" class="form-select bg-light rounded-3 custom-input-color" formControlName="mandi"
                 [class.is-invalid]="isInvalid('mandi')">
                 <option value="" disabled>Select mandi</option>
                 @for (mandi of mandis; track mandi) {
@@ -73,7 +73,7 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="plotNumber" class="form-label small text-secondary fw-bold text-uppercase">Plot Number / Property No. <span class="text-danger">*</span></label>
-              <select id="plotNumber" class="form-select bg-light rounded-3" formControlName="plotNumber"
+              <select id="plotNumber" class="form-select bg-light rounded-3 custom-input-color" formControlName="plotNumber"
                 [class.is-invalid]="isInvalid('plotNumber')">
                 <option value="" disabled>Select plot</option>
                 @for (plot of plots; track plot) {
@@ -96,21 +96,21 @@
           <div class="row g-3">
             <div class="col-md-6 col-xl-3">
               <label for="currentOwnerName" class="form-label small text-secondary fw-bold text-uppercase">Current Owner Name <small class="text-success text-capitalize">(As per document)</small> <span class="text-danger">*</span></label>
-              <input id="currentOwnerName" class="form-control bg-light rounded-3" placeholder="Current owner"
+              <input id="currentOwnerName" class="form-control bg-light rounded-3 custom-input-color" placeholder="Current owner"
                 formControlName="currentOwnerName" [class.is-invalid]="isInvalid('currentOwnerName')" />
               @if (isInvalid('currentOwnerName')) { <div class="invalid-feedback">Current owner name is required.</div> }
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="guardianName" class="form-label small text-secondary fw-bold text-uppercase">Father's / Husband Name <span class="text-danger">*</span></label>
-              <input id="guardianName" class="form-control bg-light rounded-3" placeholder="Father's / husband name"
+              <input id="guardianName" class="form-control bg-light rounded-3 custom-input-color" placeholder="Father's / husband name"
                 formControlName="guardianName" [class.is-invalid]="isInvalid('guardianName')" />
               @if (isInvalid('guardianName')) { <div class="invalid-feedback">Father's / husband name is required.</div> }
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="mobileNumber" class="form-label small text-secondary fw-bold text-uppercase">Mobile Number <span class="text-danger">*</span></label>
-              <input id="mobileNumber" type="tel" maxlength="10" class="form-control bg-light rounded-3"
+              <input id="mobileNumber" type="tel" maxlength="10" class="form-control bg-light rounded-3 custom-input-color"
                 placeholder="10 digit mobile number" formControlName="mobileNumber"
                 [class.is-invalid]="isInvalid('mobileNumber')" />
               @if (isInvalid('mobileNumber')) { <div class="invalid-feedback">Enter a valid 10 digit mobile number.</div> }
@@ -118,14 +118,14 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="email" class="form-label small text-secondary fw-bold text-uppercase">Email <span class="text-danger">*</span></label>
-              <input id="email" type="email" class="form-control bg-light rounded-3" placeholder="name@example.com"
+              <input id="email" type="email" class="form-control bg-light rounded-3 custom-input-color" placeholder="name@example.com"
                 formControlName="email" [class.is-invalid]="isInvalid('email')" />
               @if (isInvalid('email')) { <div class="invalid-feedback">Enter a valid email address.</div> }
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="state" class="form-label small text-secondary fw-bold text-uppercase">State <span class="text-danger">*</span></label>
-              <select id="state" class="form-select bg-light rounded-3" formControlName="state"
+              <select id="state" class="form-select bg-light rounded-3 custom-input-color" formControlName="state"
                 [class.is-invalid]="isInvalid('state')">
                 <option value="" disabled>Select state</option>
                 @for (state of states; track state) {
@@ -137,7 +137,7 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="ownerDistrict" class="form-label small text-secondary fw-bold text-uppercase">District <span class="text-danger">*</span></label>
-              <select id="ownerDistrict" class="form-select bg-light rounded-3" formControlName="ownerDistrict"
+              <select id="ownerDistrict" class="form-select bg-light rounded-3 custom-input-color" formControlName="ownerDistrict"
                 [class.is-invalid]="isInvalid('ownerDistrict')">
                 <option value="" disabled>Select district</option>
                 @for (district of districts; track district) {
@@ -149,7 +149,7 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="city" class="form-label small text-secondary fw-bold text-uppercase">City <span class="text-danger">*</span></label>
-              <select id="city" class="form-select bg-light rounded-3" formControlName="city"
+              <select id="city" class="form-select bg-light rounded-3 custom-input-color" formControlName="city"
                 [class.is-invalid]="isInvalid('city')">
                 <option value="" disabled>Select city</option>
                 @for (city of cities; track city) {
@@ -161,14 +161,14 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="address" class="form-label small text-secondary fw-bold text-uppercase">Address <span class="text-danger">*</span></label>
-              <input id="address" class="form-control bg-light rounded-3" placeholder="Complete address"
+              <input id="address" class="form-control bg-light rounded-3 custom-input-color" placeholder="Complete address"
                 formControlName="address" [class.is-invalid]="isInvalid('address')" />
               @if (isInvalid('address')) { <div class="invalid-feedback">Address is required.</div> }
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="aadhaarNumber" class="form-label small text-secondary fw-bold text-uppercase">Aadhaar Number <span class="text-danger">*</span></label>
-              <input id="aadhaarNumber" maxlength="12" class="form-control bg-light rounded-3"
+              <input id="aadhaarNumber" maxlength="12" class="form-control bg-light rounded-3 custom-input-color"
                 placeholder="12 digit Aadhaar number" formControlName="aadhaarNumber"
                 [class.is-invalid]="isInvalid('aadhaarNumber')" />
               @if (isInvalid('aadhaarNumber')) { <div class="invalid-feedback">Enter a valid 12 digit Aadhaar number.</div> }
@@ -176,20 +176,20 @@
 
             <div class="col-md-6 col-xl-3">
               <label for="aadhaarProof" class="form-label small text-secondary fw-bold text-uppercase">Upload Aadhaar Card Proof <span class="text-danger">*</span></label>
-              <input id="aadhaarProof" type="file" class="form-control bg-light rounded-3" [accept]="allowedFileTypes"
+              <input id="aadhaarProof" type="file" class="form-control bg-light rounded-3 custom-input-color" [accept]="allowedFileTypes"
                 (change)="onFileChange($event, 'aadhaarProof')" [class.is-invalid]="isInvalid('aadhaarProof')" />
               @if (isInvalid('aadhaarProof')) { <div class="invalid-feedback d-block">JPEG, JPG, PNG or PDF file is required.</div> }
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="passportNumber" class="form-label small text-secondary fw-bold text-uppercase">Passport Number</label>
-              <input id="passportNumber" class="form-control bg-light rounded-3" placeholder="Passport number"
+              <input id="passportNumber" class="form-control bg-light rounded-3 custom-input-color" placeholder="Passport number"
                 formControlName="passportNumber" />
             </div>
 
             <div class="col-md-6 col-xl-3">
               <label for="passportProof" class="form-label small text-secondary fw-bold text-uppercase">Upload Passport Proof</label>
-              <input id="passportProof" type="file" class="form-control bg-light rounded-3" [accept]="allowedFileTypes"
+              <input id="passportProof" type="file" class="form-control bg-light rounded-3 custom-input-color" [accept]="allowedFileTypes"
                 (change)="onFileChange($event, 'passportProof')" [class.is-invalid]="isInvalid('passportProof')" />
               @if (isInvalid('passportProof')) { <div class="invalid-feedback d-block">Only JPEG, JPG, PNG or PDF files are allowed.</div> }
             </div>
@@ -215,7 +215,7 @@
                 <div class="row g-3 align-items-center">
                   <div class="col-12 col-md-5">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"
+                      <input class="form-check-input custom-input-color" type="checkbox"
                         [id]="document.key + 'Selected'" [formControlName]="document.key + 'Selected'" />
                       <label class="form-check-label fw-semibold" [for]="document.key + 'Selected'">
                         {{ document.label }}
@@ -227,7 +227,7 @@
                   </div>
 
                   <div class="col-12 col-md-7">
-                    <input [id]="document.key + 'File'" type="file" class="form-control bg-white rounded-3"
+                    <input [id]="document.key + 'File'" type="file" class="form-control bg-white rounded-3 custom-input-color"
                       [accept]="allowedFileTypes" (change)="onFileChange($event, document.key + 'File')" />
                   </div>
                 </div>

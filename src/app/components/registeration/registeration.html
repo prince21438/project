@@ -1,17 +1,17 @@
-<main class="min-vh-100 bg-light py-3 py-lg-4">
-  <div class="container-xxl" style="max-width: 1168px;">
-    <div class="bg-white bg-opacity-75 rounded-4 p-3 mb-3 border shadow-sm">
+<main class="registration-page min-vh-100 py-3 py-lg-4">
+  <div class="registration-container container-xxl">
+    <div class="registration-title-card bg-white bg-opacity-75 rounded-4 p-4 mb-4 border shadow-sm">
       <div class="d-flex flex-column flex-md-row justify-content-center align-items-md-center gap-3">
-        <h1 class="h4 fw-bold text-dark mt-2 mb-0">Property &amp; Bidder Detail Registration</h1>
+        <h1 class="h4 fw-bold text-dark mt-0 mb-0">Property &amp; Bidder Detail Registration</h1>
       </div>
     </div>
 
     <form [formGroup]="registerationForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="row g-4 mb-4">
         <div class="col-lg-8">
-          <div class="card border-0 rounded-4 shadow-sm h-100">
+          <div class="registration-card card border-0 rounded-4 shadow-sm h-100">
             <div class="card-body p-4">
-              <div class="d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
+              <div class="section-heading no-accent d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
                 <h2 class="h5 fw-bold mb-0">Property Information</h2>
               </div>
 
@@ -23,6 +23,7 @@
                   <div class="input-group">
                     <input id="propertySearch" type="search" class="form-control bg-light custom-input-color"
                       placeholder="Search by Property Code" />
+                      <button class="btn btn-success fw-semibold rounded-end-3" type="button">Search</button>
                   </div>
                 </div>
 
@@ -125,15 +126,15 @@
         </div>
 
         <div class="col-lg-4">
-          <div class="card border-0 rounded-4 shadow-sm h-100">
+          <div class="registration-card compliance-card card border-0 rounded-4 shadow-sm h-100">
             <div class="card-body p-4">
-              <div class="d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
+              <div class="section-heading d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
                 <h2 class="h5 fw-bold mb-0">Compliance &amp; Flags</h2>
               </div>
 
               <div class="d-grid gap-3">
                 @for (status of statusFields; track status.control) {
-                <div class="d-flex align-items-center justify-content-between bg-light rounded-3 p-2">
+                <div class="flag-row d-flex align-items-center justify-content-between bg-light rounded-3 p-2">
                   <label class="form-check-label fw-semibold text-secondary" [for]="status.control">{{ status.label
                     }}</label>
                   <div class="form-check form-switch m-0">
@@ -148,8 +149,7 @@
         </div>
       </div>
 
-      <div class="card border-0 rounded-4 shadow-sm text-white mb-4"
-        style="background: linear-gradient(90deg, #04550b, #28633e);">
+      <div class="auction-status-card card border-0 rounded-4 shadow-sm text-white mb-4">
         <div class="card-body p-4">
           <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
             <div>
@@ -169,9 +169,9 @@
 
       @if (registerationForm.get('Isauctioned')?.value) {
       <div class="d-grid gap-2 mb-3">
-        <div class="card border-0 rounded-4 shadow-sm">
+        <div class="registration-card card border-0 rounded-4 shadow-sm">
           <div class="card-body p-4">
-            <div class="d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
+            <div class="section-heading no-accent d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
               <h2 class="h5 fw-bold mb-0">Bidder &amp; Auction Details</h2>
             </div>
 
@@ -294,16 +294,16 @@
           </div>
         </div>
 
-        <div class="card border-0 rounded-4 shadow-sm mt-3">
+        <div class="registration-card card border-0 rounded-4 shadow-sm mt-3">
           <div class="card-body p-4">
-            <div class="d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
+            <div class="section-heading no-accent d-flex align-items-center gap-3 border-bottom pb-3 mb-3">
 
               <h2 class="h5 fw-bold mb-0">Financial Breakdowns</h2>
             </div>
 
             <div class="row g-3 mb-4">
               <div class="col-md-6">
-                <div class="bg-light border rounded-4 p-3 h-100">
+                <div class="financial-tile bg-light border rounded-4 p-3 h-100">
                   <label for="reservePrice" class="form-label small text-secondary fw-bold text-uppercase">Reserve Price
                     <span class="text-danger">*</span></label>
                   <div class="input-group">
@@ -317,7 +317,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="bg-light border rounded-4 p-3 h-100">
+                <div class="financial-tile bg-light border rounded-4 p-3 h-100">
                   <label for="h1BidderFinalPrice" class="form-label small text-secondary fw-bold text-uppercase">H1
                     Bidder Final Price <span class="text-danger">*</span></label>
                   <div class="input-group">
@@ -334,7 +334,7 @@
 
             <div class="row g-3 mb-3">
               <div class="col-lg-12">
-                <div class="bg-light border rounded-4 p-3 h-100">
+                <div class="financial-panel bg-light border rounded-4 p-3 h-100">
                   <h3 class="small fw-bold text-secondary text-uppercase border-bottom pb-2 mb-3">Form Fees Structure
                     <span class="text-danger">*</span>
                   </h3>
@@ -359,7 +359,7 @@
                 </div>
               </div>
               <div class="col-lg-12">
-                <div class="bg-light border rounded-4 p-3 h-100">
+                <div class="financial-panel bg-light border rounded-4 p-3 h-100">
                   <h3 class="small fw-bold text-secondary text-uppercase border-bottom pb-2 mb-3">EMD (Earnest Money
                     Deposit) <span class="text-danger">*</span></h3>
                   <div class="row g-2 ">
@@ -383,7 +383,7 @@
               </div>
             </div>
 
-            <div class="bg-light border rounded-4 p-3 mb-3">
+            <div class="financial-panel bg-light border rounded-4 p-3 mb-3">
               <h3 class="small fw-bold text-secondary text-uppercase border-bottom pb-2 mb-3">25% Allotment Money
                 Milestone <span class="text-danger">*</span></h3>
               <div class="row g-2">
@@ -406,7 +406,7 @@
               </div>
             </div>
 
-            <div class="bg-light border rounded-4 p-3">
+            <div class="financial-panel bg-light border rounded-4 p-3">
               <h3 class="small fw-bold text-secondary text-uppercase border-bottom  pb-2 mb-3">Outstanding Dues &amp;
                 Installment Scheduler <span class="text-danger">*</span></h3>
               <div class="row g-2">
@@ -450,7 +450,7 @@
                   <label class="form-label small fw-bold text-secondary">Total Due
                     (Rs.)</label>
                   <input type="number" class="form-control fw-bold text-primary custom-input-color"
-                    placeholder="Auto Calculated" formControlName="totalDueAmount" />
+                    placeholder="Auto Calculate" formControlName="totalDueAmount" />
                 </div>
               </div>
             </div>
@@ -459,11 +459,11 @@
       </div>
       }
 
-      <div class="d-flex flex-column flex-sm-row justify-content-end gap-3 pt-4 border-top">
+      <div class="form-actions d-flex flex-column flex-sm-row justify-content-end gap-3 pt-4 border-top">
         <button type="button" class="btn btn-outline-secondary rounded-3 px-4 py-2 fw-semibold"
           (click)="resetForm()">Cancel</button>
         <button type="submit" class="btn text-white rounded-3 px-4 py-2 fw-bold shadow-sm border-0"
-          style="background: linear-gradient(90deg, #04550b, #28633e);">Save &amp; Register Asset</button>
+          style="background: var(--theme-primary-alpha);">Save &amp; Register Asset</button>
       </div>
     </form>
   </div>

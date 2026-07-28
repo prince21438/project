@@ -10,20 +10,21 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="role === 'user'">
         <a routerLink="/dashboard/register-property" routerLinkActive="active" class="nav-link d-flex align-items-center gap-2">
           <!-- <i class="fa-solid fa-house-circle-check"></i> -->
           <span>Register Your Property</span>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="role === 'deo'">
         <a routerLink="/dashboard/property-bidder-registration" routerLinkActive="active" class="nav-link d-flex align-items-center gap-2">
           <!-- <i class="fa-solid fa-user-check"></i> -->
           <span>Digitized Property Registration</span>
         </a>
       </li>
-      <li class="nav-item">
+
+      <li class="nav-item" *ngIf="role === 'superintendent'">
         <a routerLink="/dashboard/property-verification" routerLinkActive="active" class="nav-link d-flex align-items-center gap-2">
           <!-- <i class="fa-solid fa-circle-check"></i> -->
           <span>Property Registration Verification</span>

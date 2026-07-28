@@ -170,7 +170,8 @@ export class SignupSignin implements OnInit {
     userId: '',
     fullName: '',
     entityType: '',
-    mobile: ''
+    mobile: '',
+    role: 'user'
   };
 
   constructor(private route: ActivatedRoute, private router: Router) { }
@@ -178,7 +179,39 @@ export class SignupSignin implements OnInit {
   ngOnInit() {
     // Seed test accounts in localStorage if not already present
     const existingUsersRaw = localStorage.getItem('cp_users');
-    const existingUsers = existingUsersRaw ? JSON.parse(existingUsersRaw) : [];
+    let existingUsers = existingUsersRaw ? JSON.parse(existingUsersRaw) : [];
+
+    if (!existingUsers.length) {
+      existingUsers = [
+        {
+          userId: 'user1',
+          password: 'password',
+          fullName: 'Regular User',
+          entityType: 'Individual',
+          mobile: '9000000000',
+          email: 'user1@example.com',
+          role: 'user'
+        },
+        {
+          userId: 'dataentryoprt',
+          password: 'password',
+          fullName: 'Data Entry Operator',
+          entityType: 'Procurement Agency',
+          mobile: '9000000001',
+          email: 'deo@example.com',
+          role: 'deo'
+        },
+        {
+          userId: 'suprident',
+          password: 'password',
+          fullName: 'Superintendent',
+          entityType: 'Procurement Agency',
+          mobile: '9000000002',
+          email: 'sup@example.com',
+          role: 'superintendent'
+        }
+      ];
+    }
 
     localStorage.setItem('cp_users', JSON.stringify(existingUsers));
 
@@ -205,7 +238,7 @@ export class SignupSignin implements OnInit {
 
       localStorage.removeItem('cp_session');
       this.isLoggedIn = false;
-      this.loggedInUser = { userId: '', fullName: '', entityType: '', mobile: '' };
+      this.loggedInUser = { userId: '', fullName: '', entityType: '', mobile: '', role: 'user' };
 
       if (url.includes('/register')) {
         this.openSignUp();
@@ -651,7 +684,8 @@ export class SignupSignin implements OnInit {
       fullName: fullName,
       entityType: this.selectedEntityType,
       mobile: this.signUpData.mobileNumber,
-      email: this.signUpData.emailAddress
+      email: this.signUpData.emailAddress,
+      role: 'user'
     };
 
     existingUsers.push(newUser);
@@ -826,11 +860,13 @@ export class SignupSignin implements OnInit {
   }
 
   loginSuccess(user: any) {
+    const role = user.role || this.detectRoleFromUserId(user.userId);
     this.loggedInUser = {
       userId: user.userId,
       fullName: user.fullName,
       entityType: user.entityType || 'Individual',
-      mobile: user.mobile
+      mobile: user.mobile,
+      role
     };
     localStorage.setItem('cp_session', JSON.stringify(this.loggedInUser));
     this.isLoggedIn = true;
@@ -839,6 +875,17 @@ export class SignupSignin implements OnInit {
     if (user.userId.toLowerCase() === 'dataentryoprt') {
       this.router.navigate(['/register']);
     }
+  }
+
+  detectRoleFromUserId(userId: string): string {
+    const normalized = userId?.toLowerCase() || '';
+    if (normalized.includes('dataentry')) {
+      return 'deo';
+    }
+    if (normalized.includes('suprident') || normalized.includes('superintendent')) {
+      return 'superintendent';
+    }
+    return 'user';
   }
 
   copyToClipboard(text: string) {

@@ -312,8 +312,8 @@
                     <button type="button" class="btn-wizard-back" (click)="onBackToInstructions()">
                         Back (ਵਾਪਸ ਜਾਓ)
                     </button>
-                    <button type="button" class="btn-wizard-submit" (click)="onSubmitSignup()">
-                        Submit (ਜਮ੍ਹਾ ਕਰੋ)
+                    <button type="button" class="btn-wizard-submit" (click)="onSubmitSignup()" [disabled]="!signUpFormValid || isSignUpSubmitting" [class.disabled]="!signUpFormValid || isSignUpSubmitting">
+                        {{ isSignUpSubmitting ? 'Submitting...' : 'Submit (ਜਮ੍ਹਾ ਕਰੋ)' }}
                     </button>
                 </div>
 

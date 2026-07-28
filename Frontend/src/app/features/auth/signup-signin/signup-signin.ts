@@ -118,6 +118,11 @@ export class SignupSignin implements OnInit {
   // Mock Upload states
   uploadProgress: { [key: string]: number } = {};
   uploadingStates: { [key: string]: boolean } = {};
+  isSignUpSubmitting = false;
+
+  get signUpFormValid(): boolean {
+    return this.isSignUpFormValid();
+  }
 
   // OTP data (Signup)
   otpData = {
@@ -448,14 +453,14 @@ export class SignupSignin implements OnInit {
       this.triggerToast('Please enter a valid 10-digit Mobile Number / 10-ਅੰਕਾਂ ਦਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ', 'error');
       return false;
     }
-    if (!this.signUpData.password || this.signUpData.password.length < 6) {
-      this.triggerToast('Password must be at least 6 characters / ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ', 'error');
-      return false;
-    }
-    if (this.signUpData.password !== this.signUpData.confirmPassword) {
-      this.triggerToast('Passwords do not match / ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ', 'error');
-      return false;
-    }
+    // if (!this.signUpData.password || this.signUpData.password.length < 6) {
+    //   this.triggerToast('Password must be at least 6 characters / ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ', 'error');
+    //   return false;
+    // }
+    // if (this.signUpData.password !== this.signUpData.confirmPassword) {
+    //   this.triggerToast('Passwords do not match / ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ', 'error');
+    //   return false;
+    // }
     return true;
   }
 
@@ -553,6 +558,62 @@ export class SignupSignin implements OnInit {
     return true;
   }
 
+  isSignUpFormValid(): boolean {
+    if (!this.selectedEntityType) return false;
+    if (!this.signUpData.firstName?.trim() || !this.signUpData.lastName?.trim()) return false;
+    if (!this.signUpData.emailAddress || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.signUpData.emailAddress)) return false;
+    if (!this.signUpData.mobileNumber || !/^\d{10}$/.test(this.signUpData.mobileNumber)) return false;
+    if (!this.signUpData.idDocumentType) return false;
+    if (!this.signUpData.idDocumentNumber?.trim()) return false;
+    if (!this.signUpData.idDocumentFileName) return false;
+    if (!this.signUpData.photoFileName) return false;
+    if (!this.signUpData.addressState) return false;
+    if (!this.signUpData.addressDistrict) return false;
+    if (!this.signUpData.addressCity) return false;
+    if (!this.signUpData.addressPincode || !/^\d{6}$/.test(this.signUpData.addressPincode)) return false;
+    if (!this.signUpData.addressLandmark?.trim()) return false;
+    if (!this.signUpData.addressDocType) return false;
+    if (!this.signUpData.addressDocNumber?.trim()) return false;
+    if (!this.signUpData.addressDocFileName) return false;
+
+    if (this.shouldShowBusinessDetails()) {
+      if (!this.signUpData.firmName?.trim()) return false;
+      if (!this.signUpData.businessState) return false;
+      if (!this.signUpData.businessDistrict) return false;
+      if (!this.signUpData.businessCity) return false;
+      if (!this.signUpData.businessPincode || !/^\d{6}$/.test(this.signUpData.businessPincode)) return false;
+      if (!this.signUpData.businessLandmark?.trim()) return false;
+      if (!this.signUpData.officePhotoFileName) return false;
+    }
+
+    return true;
+  }
+
+  registerUserAndRedirect() {
+    const randomNum = Math.floor(100000 + Math.random() * 900000);
+    this.generatedUserId = `CP${randomNum}`;
+    this.generatedPassword = this.signUpData.password;
+
+    const existingUsersRaw = localStorage.getItem('cp_users');
+    const existingUsers = existingUsersRaw ? JSON.parse(existingUsersRaw) : [];
+
+    const fullName = `${this.signUpData.firstName} ${this.signUpData.lastName}`.trim();
+    const newUser = {
+      userId: this.generatedUserId,
+      password: this.generatedPassword,
+      fullName,
+      entityType: this.selectedEntityType,
+      mobile: this.signUpData.mobileNumber,
+      email: this.signUpData.emailAddress,
+      role: 'user'
+    };
+
+    existingUsers.push(newUser);
+    localStorage.setItem('cp_users', JSON.stringify(existingUsers));
+    this.loginSuccess(newUser);
+    this.router.navigateByUrl('/dashboard');
+  }
+
   // Submit handler (called by single Submit button)
   onSubmitSignup() {
     if (this.signUpData.isSameAddress) {
@@ -563,11 +624,13 @@ export class SignupSignin implements OnInit {
       this.signUpData.businessLandmark = this.signUpData.addressLandmark;
     }
 
-    if (!this.validateFullForm()) {
+    if (!this.signUpFormValid) {
+      this.triggerToast('Please complete all required fields before submitting.', 'error');
       return;
     }
 
-    this.openOtpModal();
+    this.isSignUpSubmitting = true;
+    this.registerUserAndRedirect();
   }
 
   // File Upload Simulations
@@ -603,41 +666,41 @@ export class SignupSignin implements OnInit {
     this.otpData.emailVerified = false;
     this.otpData.mobileOtpInput = '';
     this.otpData.emailOtpInput = '';
-    this.sendMobileOtp();
-    this.sendEmailOtp();
+    // this.sendMobileOtp();
+    // this.sendEmailOtp();
   }
 
   closeOtpModal() {
     this.otpModalOpen = false;
   }
 
-  sendMobileOtp() {
-    this.otpData.mobileSent = true;
-    this.otpData.mobileTimer = 30;
-    this.triggerToast(`Mobile OTP sent (Use: 123456)`, 'info');
+  // sendMobileOtp() {
+  //   this.otpData.mobileSent = true;
+  //   this.otpData.mobileTimer = 30;
+  //   this.triggerToast(`Mobile OTP sent (Use: 123456)`, 'info');
 
-    const interval = setInterval(() => {
-      if (this.otpData.mobileTimer > 0) {
-        this.otpData.mobileTimer--;
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-  }
+  //   const interval = setInterval(() => {
+  //     if (this.otpData.mobileTimer > 0) {
+  //       this.otpData.mobileTimer--;
+  //     } else {
+  //       clearInterval(interval);
+  //     }
+  //   }, 1000);
+  // }
 
-  sendEmailOtp() {
-    this.otpData.emailSent = true;
-    this.otpData.emailTimer = 30;
-    this.triggerToast(`Email OTP sent (Use: 654321)`, 'info');
+  // sendEmailOtp() {
+  //   this.otpData.emailSent = true;
+  //   this.otpData.emailTimer = 30;
+  //   this.triggerToast(`Email OTP sent (Use: 654321)`, 'info');
 
-    const interval = setInterval(() => {
-      if (this.otpData.emailTimer > 0) {
-        this.otpData.emailTimer--;
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-  }
+  //   const interval = setInterval(() => {
+  //     if (this.otpData.emailTimer > 0) {
+  //       this.otpData.emailTimer--;
+  //     } else {
+  //       clearInterval(interval);
+  //     }
+  //   }, 1000);
+  // }
 
   verifyMobileOtp() {
     if (this.otpData.mobileOtpInput === this.otpData.sentMobileOtp) {

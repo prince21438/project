@@ -233,21 +233,35 @@ textarea.form-control {
   border-color: rgba(var(--theme-primary-rgb), 0.14) !important;
 }
 
-.table-responsive-scroll {
+.table-responsive-scroll,
+.table-responsive-scroll.overflow-hidden,
+.table-responsive-scroll.rounded-3.overflow-hidden {
   display: block;
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
+  box-sizing: border-box;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
   -webkit-overflow-scrolling: touch;
 }
 
 .table-responsive-scroll .table {
   min-width: 760px;
+  width: 100%;
+  max-width: none;
   margin-bottom: 0;
+  table-layout: fixed;
 }
-.table thead th,tbody td {
-  white-space: nowrap !important;
 
+.table-responsive-scroll .table td,
+.table-responsive-scroll .table th {
+  white-space: nowrap !important;
+}
+
+@media (max-width: 1199.98px) {
+  .table-responsive-scroll .table {
+    table-layout: auto;
+  }
 }
 
 .form-actions .btn[type='submit'] {
@@ -275,6 +289,34 @@ textarea.form-control {
 
 .invalid-feedback {
   font-weight: 500;
+}
+
+.registration-page {
+  position: relative;
+  padding-inline: 0.75rem;
+}
+
+.registration-container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1400px);
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (max-width: 1199.98px) {
+  .registration-container {
+    width: min(100%, 1140px);
+    padding-inline: 0.85rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .registration-container {
+    width: 100%;
+    padding-inline: 0.75rem;
+  }
 }
 
 @media (max-width: 575.98px) {
